@@ -22,7 +22,6 @@ const fetchFonts = () => {
 }
 
 
-
 const PlayerIG = Object.create(Player)
 const Rural_LaypersonIG = Object.create(Rural_Layperson)
 
@@ -46,6 +45,7 @@ function StartScreen({ navigation }) {
     </View>
   );
 }
+
 
 function MainScreen({ navigation }) {
   return (
