@@ -3,7 +3,7 @@ import * as Font from 'expo-font';
 import { Ionicons } from '@expo/vector-icons';
 import React, {useState} from 'react';
 import AppLoading from 'expo-app-loading';
-import { Button, StyleSheet, Text, View, Image } from 'react-native';
+import { Button, StyleSheet, Text, View, Image, FlatList } from 'react-native';
 import { NavigationContainer, useLinkProps } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import MainButton from './components/MainButton';
@@ -33,14 +33,17 @@ function StartScreen({ navigation }) {
       <View style={styles.logocontainer}>
         <Image style={styles.logo} source={require('./images/ACATitle.png')} />
       </View>
-      <View>
-      <MainButton
+      <View stlye={styles.container}>
+      <MainButton style={styles.buttons}
         onPress={() => navigation.navigate("Main Screen")}>
           New Game
       </MainButton>
-      <MainButton onPress={() => navigation.navigate("Main Screen")}>
+      <MainButton style={styles.buttons} onPress={() => navigation.navigate("Main Screen")}>
         Continue
       </MainButton>
+      <View style={styles.logocontainer1}>
+
+      </View>
       </View>
     </View>
   );
@@ -60,13 +63,14 @@ function MainScreen({ navigation }) {
       <Text style={styles.whitetext}>Attack Power: {PlayerIG.baseattack}</Text>
       <Text style={styles.whitetext}>Potions: {PlayerIG.potions}</Text>
       </View>
-      <View style={styles.buttons}>
-      <MainButton style={styles.button} onPress={() => Player.potions++}>Add Potion</MainButton>
-      <MainButton onPress={() => navigation.navigate("Home")}>Exit</MainButton>
-      <MainButton onPress={() => navigation.navigate("Fight Screen")}>Fight!</MainButton>
+      <View style={styles.buttonsfightleft}>
+      <MainButton style={styles.buttons} onPress={() => navigation.navigate("Fight Screen")}>Fight</MainButton>
       <MainButton onPress={() => navigation.navigate("Inventory Screen")}>Inventory</MainButton>
       <MainButton onPress={() => navigation.navigate("Shop Screen")}>Shop Screen</MainButton>
+      <MainButton onPress={() => navigation.navigate("Story Screen")}>Story Screen</MainButton>
+      <MainButton onPress={() => navigation.navigate("Home")}>Exit</MainButton>
       </View>
+
     </View>
   );
 }
@@ -101,6 +105,32 @@ function InventoryScreen({ navigation }) {
   );
 }
 
+function StoryScreen({ navigation }) {
+  return (
+    <View>
+      <Text>Story Screen</Text>
+    </View>   
+  );
+}
+
+function WeaponsScreen({ navigation }) {
+  return (
+    <View>
+      <Text>Weapons List</Text>
+    </View>
+  )
+}
+
+function SpellsScreen({ navigation }) {
+  return (
+    <View>
+      <Text>
+        Spells
+      </Text>
+    </View>
+  )
+}
+
 const Stack = createStackNavigator();
 
 export default function App() {
@@ -125,6 +155,7 @@ export default function App() {
         <Stack.Screen name="Fight Screen" component={FightScreen}/>
         <Stack.Screen name="Shop Screen" component={ShopScreen}/>
         <Stack.Screen name="Inventory Screen" component={InventoryScreen}/>
+        <Stack.Screen name="Story Screen" component={StoryScreen}/>
       </Stack.Navigator>
     </NavigationContainer>
   );
@@ -134,12 +165,12 @@ export default function App() {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     backgroundColor: 'black',
     alignItems: 'center',
     justifyContent: 'center',
     flexDirection: 'column',
-    minHeight: "0%"
+    height: "100%",
+    paddingBottom: 300
   },
   whitetext: {
     color: 'white',
@@ -153,7 +184,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     fontFamily: 'zig',
-    paddingTop: '50%',
+    paddingTop: '30%',
     padding: 10,
   },
   logo: {
@@ -166,6 +197,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: 'black',
     padding: 10,
+    paddingTop: 100,
     flexDirection: 'row',
     height: 0,
     minHeight: '5%',
@@ -186,10 +218,25 @@ const styles = StyleSheet.create({
     marginTop: 0,
   },
   buttons: { 
-    flex: 1,
     flexDirection: 'row',
     flexWrap: 'wrap',
-    alignItems: 'flex-start',
+    padding: 100,
+    marginBottom: "50%",
   },
-});
+  logocontainer1: {
+    backgroundColor: 'black',
+    padding: 10,
+    flexDirection: 'row',
+    top: "10%",
+    width: "100%",
+    
+  },
+  buttonsfightleft: { 
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    padding: 100,
+    marginBottom: "50%",
+    right: 100,
+  },
+  });
 

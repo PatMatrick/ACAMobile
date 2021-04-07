@@ -17,11 +17,16 @@ const styles = StyleSheet.create({
         paddingVertical: 12,
         paddingHorizontal: 30,
         borderRadius: 25,
-        margin: 10
+        margin: 10,
+        width: 350
     },
     buttonText: {
         color: 'white',
-        fontSize: 15,
+        fontSize: 20,
+        alignContent: 'center',
+        alignItems: 'center',
+        justifyContent: 'center',
+        fontFamily: 'zig',
     },
 });
 
